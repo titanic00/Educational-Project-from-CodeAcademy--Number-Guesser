@@ -6,10 +6,14 @@ let currentRoundNumber = 1;
 const generateTarget = () => Math.floor(Math.random() * 9);
 
 const compareGuesses = (humanGuess, computerGuess, targetToGuess) => {
-    if ((targetToGuess - humanGuess) < (computerGuess - targetGuess))
-        return true
-    else if ((targetToGuess - humanGuess) > (targetToGuess - computerGuess))
+    if (Math.abs(targetToGuess - humanGuess) > Math.abs(targetToGuess - computerGuess))
         return false
-    else
+    else if (Math.abs(targetToGuess - humanGuess) < Math.abs(targetToGuess - computerGuess))
         return true
+    else if (Math.abs(targetToGuess - humanGuess) === Math.abs(targetToGuess - computerGuess))
+        return true
+}
+
+const updateScore = winner => {
+    winner === 'human' ? humanScore++ : computerScore++
 }
